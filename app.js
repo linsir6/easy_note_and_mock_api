@@ -3,8 +3,15 @@ const app = new Koa();
 var controller = require('koa-route');
 var service = require('./service.js');
 
+var render = views('./view', {
+    map: {html: 'ejs'}
+});
 
-
+app.use(koa_static({
+    rootDir: './static/',
+    rootPath: '/static/',
+    maxage: 0
+}));
 
 app.use(controller.get('/', function*() {
     this.set('Cache-Control', 'no-cache');
@@ -28,6 +35,11 @@ app.use(controller.get('/', function*() {
 
 
     this.body = yield service.select_all_api();
+}));
+
+app.use(controller.get('/index.html', function*() {
+    this.set('Cache-Control', 'no-cache');
+    this.body = yield render('index');
 }));
 
 console.log("服务已经开启～");
