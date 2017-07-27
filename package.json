@@ -12,7 +12,8 @@
     "koa-views": "^4.1.0",
     "koa-static-server": "^0.1.8",
     "n": "^2.1.2",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "mysql":"^2.14.0"
   },
   "devDependencies": {},
   "scripts": {
